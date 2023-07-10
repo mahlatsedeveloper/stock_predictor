@@ -6,8 +6,7 @@ app = Flask(__name__)
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # Your prediction logic here
-    prediction_result = "Buy"  # Placeholder for the prediction result
+    prediction_result = "Buy" 
 
     response = {
         'stock': 'AAPL',

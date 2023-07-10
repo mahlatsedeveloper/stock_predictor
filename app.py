@@ -5,6 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 import io
 import base64
 import urllib
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -13,9 +14,12 @@ def index():
     if request.method == 'POST':
         stock = request.form.get('stock')
 
-        # Download historical market data
-        data = yf.download(stock, start='2020-01-01', end='2022-12-31')
+        # Calculate the date 5 years ago
+        start_date = (datetime.now() - timedelta(days=5*365)).strftime('%Y-%m-%d')
 
+        # Download historical market data
+        data = yf.download(stock, start=start_date, end=datetime.now().strftime('%Y-%m-%d'))
+        
         # Calculate features
         data['SMA'] = data['Close'].rolling(window=14).mean()
         data['EMA'] = data['Close'].ewm(span=14, adjust=False).mean()

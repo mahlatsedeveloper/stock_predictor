@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>Stock Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <h1>Stock Predictor</h1>
@@ -14,7 +16,8 @@
 
     {% if prediction_text %}
         <h2>Prediction: {{ prediction_text }}</h2>
-        <img src="data:image/png;base64,{{ plot_url }}">
     {% endif %}
+
+    <img src="data:image/png;base64,{{ plot_url }}" alt="Stock Prediction Plot" />
 </body>
 </html>
